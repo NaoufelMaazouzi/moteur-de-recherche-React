@@ -1,0 +1,184 @@
+import React, { Component } from "react";
+
+class Results extends Component {
+  state = {};
+  render() {
+    return (
+      <div>
+        {this.props.array.map((first, index) => {
+          return (
+            <div key={index}>
+              <h2>{first.titre}</h2>
+
+              {first.url.map((urls, indexUrl) => {
+                return (
+                  <div key={indexUrl}>
+                    <p>{urls}</p>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+}
+
+export default Results;
+
+
+
+
+
+
+
+
+
+
+import React, { Component } from "react";
+
+class Results extends Component {
+  state = {};
+  render() {
+    return (
+      <div>
+        {this.props.titre.map((titres, index) => (
+          <div key={index}>
+            <p>{titres}</p>
+          </div>
+        ))}
+        {this.props.url.map((urls, index) => (
+          <div key={index}>
+            <p>{urls}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default Results;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { Component } from "react";
+import Input from "./Components/Input";
+import Results from "./Components/Results";
+import "./App.css";
+
+class App extends Component {
+  state = {
+    array: [
+      {
+        titre: [],
+        url: []
+      }
+    ]
+  };
+
+  getResult = async e => {
+    e.preventDefault();
+    const search = e.target.elements.input.value;
+    const url =
+      "https://cors-anywhere.herokuapp.com/https://fr.wikipedia.org/w/api.php?action=opensearch&search=";
+    const response = await fetch(url + search);
+    console.log(response);
+    const data = await response.json();
+    this.setState({
+      array: [
+        {
+          titre: data[1],
+          url: data[3]
+        }
+      ]
+    });
+    console.log();
+  };
+
+  render() {
+    return (
+      <div>
+        <Input getResult={this.getResult} />
+        <Results
+          array={this.state.array}
+          titre={this.state.array.titre}
+          url={this.state.array.url}
+        />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+import React, { Component } from "react";
+import Input from "./Components/Input";
+import Results from "./Components/Results";
+import "./App.css";
+
+class App extends Component {
+  state = {
+    titre: [],
+    url: [],
+    error: undefined
+  };
+
+  getResult = async e => {
+    e.preventDefault();
+    const search = e.target.elements.input.value;
+    const url =
+      "https://cors-anywhere.herokuapp.com/https://fr.wikipedia.org/w/api.php?action=opensearch&search=";
+    const response = await fetch(url + search);
+    console.log(response);
+    const data = await response.json();
+    this.setState({
+      titre: data[1],
+      url: data[3]
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Input getResult={this.getResult} />
+        <Results titre={this.state.titre} url={this.state.url} />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+

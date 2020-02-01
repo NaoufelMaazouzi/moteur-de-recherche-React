@@ -1,0 +1,48 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.img {
+  width: 110px;
+  height: 80px;
+  margin-top: 2%;
+}
+
+.divSearch {
+  background-color: #eee9e9;
+  width: 100%;
+}
+
+.input {
+  margin-left: 5%;
+  height: 30px;
+  width: 40%;
+  border-radius: 2px;
+  border: solid grey 1px;
+  -webkit-user-select: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
+  display: none;
+}
+
+.input:hover {
+  box-shadow: 1px 1px 5px #555;
+}
+
+h1 {
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 2%;
+  font-family: "Open Sans", sans-serif;
+}
+
+.button {
+  height: 32px;
+  margin-left: 10px;
+}
